@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="Fully responsive project with a backend">
+        <link rel="stylesheet" href="main.css">
+        <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+        <!-- animated css -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css">
+        
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        <title>wire frame chal</title>
+    </head>
+    <body>
+
+        <!--HEADER-->
+        <header class="container-fluid">
+                <nav id="navbar" class="navbar navbar-expand-xl position-fixed-top  navbar-light">
+                        <a class="navbar-brand navColor mx-auto" href="/" aria-label="Navbar">Guys<span class="text-primary">Law</span><span class="text-dark">Firm</span></a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse p-0 m-0" id="navbarNav">
+                            <div class="container p-0 m-0 col-12 col-xl-10">
+                                <ul id="headerUlOne" class="text-center nav nav-pills  navbar-nav">
+                                    <li class="nav-item mx-auto <% if(page_name === "index") { %> active <% } %>">
+                                        <a class="nav-link text-md-center" href="/" aria-label="Home">Home <span class="sr-only">Home</span></a>
+                                    </li>
+                                    <li class="nav-item mx-auto <% if(page_name === "about") { %> active <% } %>">
+                                        <a class="nav-link" href="/about" aria-label="/about">About</a>
+                                    </li>
+                                    <li class="nav-item mx-auto <% if(page_name === "contact") { %> active <% } %>">
+                                        <a class="nav-link" href="/contact" aria-label="/contact">Contact</a>
+                                    </li>
+                            </div>
+                                </ul>
+                            <div class="justify-content-center justify-xl-content-end d-flex">
+                                <ul id="headerUltwo" class="text-center nav nav-pills text-light navbar-nav">
+                                    <!-- If no current user display... -->
+                                    <% if (!currentUser) { %>
+                                        <li class="nav-item mx-auto text-center <% if(page_name === "logIn") { %> active <% } %>">
+                                            <a class="nav-link" href="/login" aria-label="/login">Log In</a>
+                                        </li>
+                                        <li class="nav-item mx-auto text-center <% if(page_name === "signUp") { %> active <% } %>">
+                                             <a class="nav-link pl-xl-4" href="/signup" aria-label="Signup">Sign Up</a>
+                                        </li>
+                                        <!-- If user display... -->
+                                    <% } else { %>
+                                        <li class="nav-item mx-auto <% if(page_name === "profile") { %> active <% }; %>">
+                                            <!--href is making it so it goes to the correct url-->
+                                            <a class="nav-link" href="/profile/<%=currentUser.id%>" aria-label="Profile">Welcome, <%= currentUser.username %></a>
+                                        </li>
+                                        <li class="nav-item mx-auto text-center">
+                                            <a class="nav-link" href="/logout" aria-label="logout">Logout</a>
+                                        </li>
+                                    <%  } %>
+                                </ul>
+                            </div>
+                        </div>
+                </nav>
+        </header>
+        <!-- Hr for header -->
+        <hr class="container-fluid m-0">
+
+        <!-- ALERTS -->
+        <div id="alerts" class="container col-12 mt-5">
+             <!-- if success and success string length is greater then 0 display success -->
+            <% if(success && success.length > 0) { %>
+                <div class="text-center w-100 mx-auto">
+                    <h1 class="text-success" role="alert"><%= success %></h1>
+                </div>
+            <% } %>
+
+                <!-- if error and errors string length is greater then 0 display error -->
+            <% if(error && error.length > 0) { %>
+                <div class="text-center w-100 mx-auto">
+                    <h1 class="text-danger" role="alert"><%= error %></h1>
+                </div>
+             <% } %>
+        </div>
+            
+        

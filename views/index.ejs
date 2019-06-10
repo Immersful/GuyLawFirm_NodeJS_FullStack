@@ -1,0 +1,60 @@
+<% include ../partials/header %>
+
+<!-- jumbotron -->
+<div class="jumbotron mx-auto bg-transparent jumbotron-fluid">
+    <div class="container text-center">
+        <h3 class="mx-auto text-center">
+            GuyLawFirm
+        </h3>
+        <p class="mx-auto text-wrap word-wrap w-50 pt-3 pb-3">
+                Founded in November xxxx, The Guy Law Firm is dedicated to fostering an environment in which families, businesses, 
+                and the community at large can prosper. The Firm’s lawyers and staff share a common commitment to provide our clients with competent, caring and experienced legal services....
+        </p>
+            <a href="about" class="btn btn-primary">Learn More Here!</a>
+    </div>
+</div>
+
+<!-- Some Lawers -->
+<section id="indexLawyers" class="container col-12">
+    <div class="justify-content-around list-vertical d-xl-flex">
+            <div id="lawyers" class="card border-0 mx-auto mx-0 h-25" style="width: 18rem;">
+                    <img src="the-figure-of-the-1524806_960_720.webp" class="card-img-top" alt="Lawyers Name">
+                    <div class="card-body">
+                        <h5 class="card-title pt-4 pb-4 text-center">John Kent</h5>
+                        <p class="card-text text-center">The Firm’s lawyers and staff share a common commitment to provide our clients with competent, caring and experienced legal services.</p>
+                        <form class="text-center" method="POST" action="/contact">
+                            <input class="d-none" name="name" value="John Kent">
+                            <button type="submit" class="btn btn-primary">Contact Me</button>
+                        </form>
+                    </div>
+                </div>
+        
+                <div id="lawyers" class="card border-0 mx-auto h-25" style="width: 18rem;">
+                    <img src="the-figure-of-the-1524806_960_720.webp" class="card-img-top" alt="Lawyers Name">
+                    <div class="card-body">
+                        <h5 class="card-title pt-4 pb-4 text-center">Marlin Codet</h5>
+                        <p class="card-text text-center">The Firm’s lawyers and staff share a common commitment to provide our clients with competent, caring and experienced legal services.</p>
+                        <form class="text-center" method="POST" action="/contact">
+                            <input class="d-none" name="name" value="Marlin Codet">
+                            <button type="submit" class="btn btn-primary">Contact Me</button>
+                        </form>
+                    </div>
+                </div>
+        
+                <div id="lawyers" class="card border-0 mx-auto h-25" style="width: 18rem;">
+                    <img src="the-figure-of-the-1524806_960_720.webp" class="card-img-top" alt="Lawyers Name">
+                    <div class="card-body">
+                        <h5 name="lawyerName" class="card-title pt-4 pb-4 text-center">Rick Gabber</h5>
+                        <p class="card-text text-center">The Firm’s lawyers and staff share a common commitment to provide our clients with competent, caring and experienced legal services.</p>
+                        <form class="text-center" method="POST" action="/contact">
+                            <input class="d-none" name="name" value="Rick Gabber">
+                            <button type="submit" class="btn btn-primary">Contact Me</button>
+                        </form>
+                    </div>
+                </div>
+    </div>
+</section>
+        
+
+          
+<% include ../partials/footer %>

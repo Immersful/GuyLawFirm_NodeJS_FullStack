@@ -1,0 +1,28 @@
+<% include ../partials/header %>
+
+<div class="container col-10 col-sm-8 col-md-6 col-lg-4 col-xl-3">
+        <form id="form-signup" class="form-signup" method="POST" action="/signup">
+                <h1 class="h3 mb-4 text-center font-weight-normal">Sign Up</h1>
+                <div class="w-50 float-left">
+                        <label for="firstName" class="sr-only">firstName</label>
+                        <h5 id="cNames">First name:</h4>
+                        <input type="text" name="firstName" id="firstName" class="form-control" placeholder="First Name" required>
+                    </div>
+        
+                    <div class="w-50 float-right">
+                        <label for="lastName" class="sr-only">lastName</label>
+                        <h5 id="cNames">Last name:</h4>
+                        <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Last Name" required>
+                    </div>
+                <label for="email" class="p-0 m-0 mt-3">Email address:</label>
+                <input type="email" name="email" id="email" class="form-control" placeholder="Email address" required>
+                <label for="username" class="p-0 m-0 mt-3">Username:</label>
+                <input type="text" name="username" id="username" class="form-control" placeholder="Username" required>
+                <label for="password" class="p-0 m-0 mt-3">Password:</label>
+                <input type="password" name="password" id="password" class="form-control mb-3" placeholder="Password" required>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+        </form>
+</div>
+
+
+<% include ../partials/footer %>
