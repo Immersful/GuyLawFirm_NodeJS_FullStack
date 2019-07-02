@@ -7,10 +7,14 @@ var express                 = require("express"),
     Contact                 = require("./dataSchemas/contact"),
     passportLocalMongoose   = require("passport-local-mongoose"),
     flash                   = require('connect-flash'),
+    methodOverride          = require("method-override"),
     app                     = express();
 
 //connectiong to a specific database
 mongoose.connect("mongodb://localhost/LoginApp2");
+
+//maki
+app.use(methodOverride('_method'))
 
 //using express-session
 app.use(require("express-session")({
@@ -84,17 +88,114 @@ app.get("/contact", function(req, res){
     });
 });
 
-//contact Form information
-app.post("/contactform", function(req, res){
-    //send to an email.....
- });
-
  //Getting the lawyers name on click for the contact form
-app.post("/contact", function(req, res){
+ app.post("/contact", function(req, res){
     res.render("contact", {
         name: req.body.name,
         page_name: "contact",
         currentUser: req.user
+    });
+});
+
+//contact Form information
+app.post("/contactform", function(req, res){
+
+    //getting the currentUser to get the current users id
+    var currentUser = req.user;
+    var author = {
+        id: currentUser._id
+    }
+    //getting the currentUser to get the current users id
+
+    //collecting all the data
+    var firstName = req.body.firstName;
+    var lastname = req.body.lastName;
+    var lName = req.body.lName;
+    var rFContact = req.body.rFContact;
+    var message = req.body.message
+
+    //storing all the data in the variable
+    var data = {firstName: firstName, lastName: lastname, lName: lName, rFContact: rFContact, message: message, author: author};
+    //storing the contact form data in mongodb's database
+    Contact.create(data, function(err, contactForm){
+        if(err) {
+            console.log(err);
+        } else {
+            //redirecting to the home page if no errors
+            res.redirect("/");
+        }
+    });
+ });
+
+ //deleting one contact form from db
+ app.delete("/profile/:id", function(req, res){
+     var currentUser = req.user;
+     //finding the contact info by id and removing it
+    Contact.findByIdAndRemove(req.params.id, function(err){
+        if(err) {
+            res.redirect("/profile/" + currentUser._id);
+        } else {
+            req.flash("success", "Deleted Contact Form");
+            res.redirect("/profile/" + currentUser._id);
+        }
+    });
+ });
+
+//profile 
+app.get("/profile/:id", function(req, res){
+    //finding the user by id
+    User.findById(req.params.id, function(err, foundUser) {
+        if(err) {
+          req.flash("error", "Something went wrong.");
+          return res.redirect("/");
+        }
+        // finding the contact forms for (one specific user) if the contact forms id matches the users id
+        Contact.find().where('author.id').equals(foundUser._id).exec(function(err, contacts) {
+          if(err) {
+            req.flash("error", "");
+            return res.redirect("/");
+          }
+          //rendering the profile ejs template with the foundusers information and all the contact forms that user has sent
+          res.render("profile", {
+              user: foundUser, 
+              contact: contacts,
+              currentUser: req.user,
+              page_name: "profile"
+            });
+        })
+      });
+});
+
+//edit profile
+app.get("/profile/:id/edit", function(req ,res){
+
+    //finding the id to use in the edit template
+    User.findById(req.params.id, function(err, foundUser){
+        if(err) {
+           return res.redirect("/profile/" + req.params.id);
+        } else {
+            res.render("edit", {
+                currentUser: req.user,
+                user: foundUser,
+                page_name: "profile"
+            });
+        }
+    })
+});
+
+//update profile from edit
+app.put("/profile/:id", function(req, res){
+
+    //finding user and updating its informationg from the edit form
+    //                     getting the id  getting the form from the edit template
+    User.findByIdAndUpdate(req.params.id, req.body.userEdit, function(err, updatedUser){
+        if(err) {
+            req.flash("err", "Can not Update something went wrong")
+            return res.redirect("/profile/" + req.params.id);
+        } else {
+            req.flash("success", "Updated Users Information")
+            return res.redirect("/profile/" + req.params.id);
+        }
     });
 });
 

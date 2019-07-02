@@ -1,0 +1,23 @@
+<% include ../partials/header %>
+
+<div class="container col-10 col-sm-8 col-md-6 col-lg-4 col-xl-3">
+        <form id="form-signup" class="form-signup mt-3" method="POST" action="/profile/<%=user._id%>?_method=PUT">
+            <h3 class="text-center mx-auto mb-5">Edit Your Profile</h3>
+                <div class="w-50 float-left">
+                        <label for="firstName">First Name:</label>
+                        <input type="text" name="userEdit[firstName]" id="firstName" class="form-control" value="<%= user.firstName %>">
+                    </div>
+        
+                    <div class="w-50 float-right">
+                        <label for="lastName">Last Name:</label>
+                        <input type="text" name="userEdit[lastName]" id="lastName" class="form-control" value="<%= user.lastName %>">
+                    </div>
+                <label for="email" class="p-0 m-0 mt-3">Email address:</label>
+                <input type="email" name="userEdit[email]" id="email" class="form-control" value="<%= user.email %>">
+                <label for="avatar">Avatar:</label>
+                <input type="text" name="userEdit[avatar]" id="avatar" class="form-control">
+                <button class="btn btn-lg btn-primary btn-block mt-3" type="submit">Sign Up</button>
+        </form>
+</div>
+
+<% include ../partials/footer %>

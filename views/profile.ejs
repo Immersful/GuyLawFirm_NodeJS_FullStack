@@ -1,0 +1,34 @@
+<% include ../partials/header %>
+
+<section class="container">
+
+  <div class="col-md-4 float-left ">
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top text-center mt-2 p-2" src="<%=user.avatar%>" alt="Profile Avatar">
+      <h4 class="card-text text-center mx-auto mt-3"><%= user.firstName %>, <%= user.lastName %></h4>
+      <hr class="w-50 mx-auto">
+      <div class="card-body text-center mx-auto">
+        <a href="/profile/<%=user._id%>/edit" class="btn btn-primary">Edit Profile</a>
+      </div>
+    </div>  
+  </div>
+
+  <div class="col-md-8 float-right">
+    <h3 class="text-center mx-auto"><%= user.username %>'s Contact Forms:</h3>
+    <ul class="list-group mt-3">
+      <!-- looping thru all the contact forms submitted by the user -->
+    <% contact.forEach(function(contact) { %>
+      <li class="list-group-item mt-3">
+        <h5 class="text-center mx-auto">Lawyers Name: <%= contact.lName %></h5>
+        <p class="text-center mx-auto">Reason For Contacting: <%= contact.rFContact %></p>
+        <p class="text-center mx-auto lead mt-1"><strong>Message:</strong> <%= contact.message %></p>
+        <form action="/profile/<%= contact._id %>?_method=DELETE" method="POST">
+          <button class="btn btn-danger float-right">DELETE</button>
+        </form>
+      </li>
+    <% }); %>
+    </ul>
+  </div>
+
+</section>
+<% include ../partials/footer %>
