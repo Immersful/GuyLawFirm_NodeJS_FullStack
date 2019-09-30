@@ -12,11 +12,10 @@
                         <label for="lastName">Last Name:</label>
                         <input type="text" name="userEdit[lastName]" id="lastName" class="form-control" value="<%= user.lastName %>">
                     </div>
-                <label for="email" class="p-0 m-0 mt-3">Email address:</label>
-                <input type="email" name="userEdit[email]" id="email" class="form-control" value="<%= user.email %>">
-                <label for="avatar">Avatar:</label>
-                <input type="text" name="userEdit[avatar]" id="avatar" class="form-control">
-                <button class="btn btn-lg btn-primary btn-block mt-3" type="submit">Sign Up</button>
+
+                <label for="message" class="p-0 m-0 mt-3">Message:</label>
+                <input type="text" name="userEdit[message]" id="message" class="form-control" value="<%= user.message %>" maxlength="112">
+                <button class="btn btn-lg btn-primary btn-block mt-3" type="submit">Update</button>
         </form>
 </div>
 

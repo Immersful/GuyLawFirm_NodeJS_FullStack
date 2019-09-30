@@ -4,11 +4,16 @@
 
   <div class="col-md-4 float-left ">
     <div class="card" style="width: 18rem;">
-      <img class="card-img-top text-center mt-2 p-2" src="<%=user.avatar%>" alt="Profile Avatar">
-      <h4 class="card-text text-center mx-auto mt-3"><%= user.firstName %>, <%= user.lastName %></h4>
+      <a class="mt-3" id="profileImgLink" href="/profile/<%=user._id%>/edit/avatar">
+        <span id="profileImgEdit" ><i class="fas fa-edit"></i></span>
+        <img id="profileImg" class="card-img-top text-center mx-auto" src="<%=user.avatar%>" alt="Profile Avatar" title="Edit Your Avat" onerror="this.src='https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_large.png?v=1530129081';">
+      </a>
+      <h6 class="card-text text-center mx-auto mt-4 m-0"><%= user.username %></h6>
+      <h4 class="card-text text-center mx-auto mt-1"><%= user.firstName %> <%= user.lastName %></h4>
       <hr class="w-50 mx-auto">
-      <div class="card-body text-center mx-auto">
-        <a href="/profile/<%=user._id%>/edit" class="btn btn-primary">Edit Profile</a>
+      <p class="card-text text-center mx-auto pr-5 pl-5" size="22" style="word-break: normal"><%= user.message %></p>
+      <div class="card-body">
+        <a href="/profile/<%=user._id%>/edit" class="btn btn-info float-right" title="Edit Profile"><i class="fas fa-edit"></i></a>
       </div>
     </div>  
   </div>
@@ -18,13 +23,14 @@
     <ul class="list-group mt-3">
       <!-- looping thru all the contact forms submitted by the user -->
     <% contact.forEach(function(contact) { %>
-      <li class="list-group-item mt-3">
-        <h5 class="text-center mx-auto">Lawyers Name: <%= contact.lName %></h5>
-        <p class="text-center mx-auto">Reason For Contacting: <%= contact.rFContact %></p>
-        <p class="text-center mx-auto lead mt-1"><strong>Message:</strong> <%= contact.message %></p>
+      <li id="profileContact" class="list-group-item mt-3">
+        <p class="text-center mx-auto"><strong>Lawyers Name:</strong> <%= contact.lName %></p>
+        <p class="text-center mx-auto"><strong>Reason For Contacting:</strong> <%= contact.rFContact %></p>
+        <p class="text-center mx-auto"><strong>Message:</strong> <%= contact.message %></p>
         <form action="/profile/<%= contact._id %>?_method=DELETE" method="POST">
-          <button class="btn btn-danger float-right">DELETE</button>
+          <button class="btn btn-danger float-right" title="Delete contact form"><i class="fas fa-trash"></i></button>
         </form>
+        <a href="/profile/<%=user._id%>/edit/<%=contact._id%>">Edit</a>
       </li>
     <% }); %>
     </ul>

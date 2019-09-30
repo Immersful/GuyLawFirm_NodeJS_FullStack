@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="Fully responsive project with a backend">
-        <link rel="stylesheet" href="main.css">
+        <link rel="stylesheet" href="/main.css">
         <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
         <!-- animated css -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css">
@@ -51,7 +51,7 @@
                                     <% } else { %>
                                         <li class="nav-item mx-auto <% if(page_name === "profile") { %> active <% }; %>">
                                             <!--href is making it so it goes to the correct url-->
-                                            <a class="nav-link" href="/profile/<%=currentUser.id%>" aria-label="Profile">Welcome, <%= currentUser.username %></a>
+                                            <a class="nav-link" href="/profile/<%=currentUser.id%>" aria-label="Profile"><%= currentUser.username %></a>
                                         </li>
                                         <li class="nav-item mx-auto text-center">
                                             <a class="nav-link" href="/logout" aria-label="logout">Logout</a>
@@ -63,7 +63,7 @@
                 </nav>
         </header>
         <!-- Hr for header -->
-        <hr class="container-fluid m-0">
+        <hr class="fluid-container m-0">
 
         <!-- ALERTS -->
         <div id="alerts" class="container col-12 mt-5">

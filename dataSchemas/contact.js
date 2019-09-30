@@ -7,7 +7,7 @@ var contactData = new mongoose.Schema({
     rFContact: String,
     message: String,
     // making it so I can user the contact data on a specific user
-    author: {
+    duthor: {
         //getting the users id
         id: {
             type: mongoose.Schema.Types.ObjectId,

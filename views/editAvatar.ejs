@@ -1,0 +1,14 @@
+<% include ../partials/header %>
+
+<div class="container col-10 col-sm-8 col-md-6 col-lg-4 col-xl-3">
+        <form id="form-signup" class="form-signup mt-3" method="POST" action="/profile/<%=user._id%>?_method=PUT">
+            <h3 class="text-center mx-auto mb-5">Edit Your Avatar</h3>
+
+                <label for="avatar" class="p-0 m-0 mt-3">Avatar:</label>
+                <input type="text" name="userEdit[avatar]" id="avatar" class="form-control" value="<%= user.avatar %>">
+
+                <button class="btn btn-lg btn-primary btn-block mt-3" type="submit">Update</button>
+        </form>
+</div>
+
+<% include ../partials/footer %>

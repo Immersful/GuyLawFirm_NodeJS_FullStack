@@ -1,0 +1,19 @@
+<% include ../partials/header %>
+
+<div class="container col-10 col-sm-8 col-md-6 col-lg-4 col-xl-3">
+        <form id="form-signup" class="form-signup mt-3" method="POST" action="/profile/<%=user._id%>/contact/<%=contact._id%>?_method=PUT">
+            <h3 class="text-center mx-auto mb-5">Edit Your Contact Form: </h3>
+
+            <label for="lName" class="p-0 m-0 mt-3">Lawyers Name:</label>
+            <input type="text" name="contact[lName]" id="lName" class="form-control" value="<%= contact.lName %>">
+
+            <label for="rFContact" class="p-0 m-0 mt-3">Reason For Contacting:</label>
+            <input type="text" name="contact[rFContact]" id="rFContact" class="form-control" value="<%= contact.rFContact %>">
+
+                <label for="message" class="p-0 m-0 mt-3">Message:</label>
+                <input type="text" name="contact[message]" id="message" class="form-control" value="<%= contact.message %>" maxlength="112">
+                <button class="btn btn-lg btn-primary btn-block mt-3" type="submit">Update</button>
+        </form>
+</div>
+
+<% include ../partials/footer %>
