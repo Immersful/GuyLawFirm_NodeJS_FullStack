@@ -3,8 +3,7 @@
 <div class="container col-10 col-sm-8 col-md-6 col-lg-4 col-xl-3">
         <form id="form-contact" class="form-contact" method="POST" action="/contactForm">
             <h1 class="h3 mb-4 text-center font-weight-normal">Contact Lawyers</h1>
-            <label for="lName" class="">Lawyers Name:</label>
-            <input type="text" name="lName" id="lName" class="form-control mb-3" value="<%= name %>">
+
             <div class="w-50 float-left">
                 <label for="firstName">First Name:</label>
                 <input type="text" name="firstName" id="firstName" class="form-control" placeholder="First Name" required>
@@ -14,6 +13,9 @@
                 <label for="lastName">Last Name:</label>
                 <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Last Name" required>
             </div>
+
+            <label for="lawyersName" class="mt-3">Lawyers Name:</label>
+            <input type="text" name="lawyersName" id="lawyersName" class="form-control" value="<%= name %>">
             <label for="rFContacting" class="mt-3 p-0">Reason For Contacting:</label>
             <input type="text" name="rFContact" id="rFContacting" class="form-control" placeholder="Reason For Contacting" required>
             <label for="message" class="mt-2">Message:</label>

@@ -24,27 +24,50 @@ router.delete("/profile/:id", function(req, res){
 
 //profile 
 router.get("/profile/:id", function(req, res){
-   //finding the user by id
-   User.findById(req.params.id, function(err, foundUser) {
-       if(err) {
-         req.flash("error", "Something went wrong.");
-         return res.redirect("/");
-       }
-       // finding the contact forms for (one specific user) if the contact forms id matches the users id
-       Contact.find().where('duthor.id').equals(foundUser._id).exec(function(err, contacts) {
-         if(err) {
-           req.flash("error", "");
-           return res.redirect("/");
-         }
-         //rendering the profile ejs template with the foundusers information and all the contact forms that user has sent
-         res.render("profile", {
-             user: foundUser,
-             contact: contacts,
-             currentUser: req.user,
-             page_name: "profile"
-           });
-       });
-     });
+    if(req.user.isAdmin === false) {
+         //finding the user by id
+    User.findById(req.params.id, function(err, foundUser) {
+        if(err) {
+        req.flash("error", "Something went wrong.");
+        return res.redirect("/");
+        }
+        // finding the contact forms for (one specific user) if the contact forms id matches the users id
+        Contact.find().where('author.id').equals(foundUser._id).exec(function(err, contacts) {
+        if(err) {
+            req.flash("error", "");
+            return res.redirect("/");
+        }
+        //rendering the profile ejs template with the foundusers information and all the contact forms that user has sent
+        res.render("profile", {
+            user: foundUser,
+            contact: contacts,
+            currentUser: req.user,
+            page_name: "profile"
+            });
+        });
+    });
+    } else {
+        User.findById(req.params.id, function(err, foundUser) {
+            if(err) {
+              req.flash("error", "Something went wrong.");
+              return res.redirect("/");
+            }
+            // finding the contact forms for (one specific user) if the contact forms id matches the users id
+            Contact.find(function(err, contacts) {
+              if(err) {
+                req.flash("error", "");
+                return res.redirect("/");
+              }
+              //rendering the profile ejs template with the foundusers information and all the contact forms that user has sent
+              res.render("adminProfile", {
+                  user: foundUser,
+                  contact: contacts,
+                  currentUser: req.user,
+                  page_name: "profile"
+                });
+            });
+        });   
+    };
 });
 
 //edit profile
@@ -154,12 +177,16 @@ router.get("/profile/:id/edit/avatar", function(req ,res){
                     req.flash("err", "Can not Update something went wrong")
                     return res.redirect("/profile/" + req.params.id);
                 } else {
-                    req.flash("success", "Updated Users Information")
+                    req.flash("success", "Updated Contact Information")
                     return res.redirect("/profile/" + req.params.id);
                 }
             });
         }
     });
+});
+
+router.post('', function(req, res){
+
 });
 
 module.exports = router;

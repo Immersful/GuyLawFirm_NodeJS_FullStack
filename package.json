@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "app.js",
   "dependencies": {
+    "async": "^3.1.0",
     "body-parser": "^1.19.0",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^3.0.0",
@@ -14,6 +15,7 @@
     "mongod": "^2.0.0",
     "mongodb": "^3.2.4",
     "mongoose": "^5.5.8",
+    "nodemailer": "^6.3.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^5.0.1",
@@ -25,5 +27,13 @@
   },
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Immersful/Stuff.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Immersful/Stuff/issues"
+  },
+  "homepage": "https://github.com/Immersful/Stuff#readme"
 }

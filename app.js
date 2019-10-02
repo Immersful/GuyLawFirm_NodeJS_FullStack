@@ -16,7 +16,9 @@ var express                 = require("express"),
     app                     = express();
 
 //connectiong to a specific database
-mongoose.connect("mongodb://localhost/LoginApp2");
+mongoose.connect("mongodb://localhost/LoginApp2", {
+    
+});
 
 //setting the view engine to ejs
 app.set("view engine", "ejs");

@@ -50,19 +50,21 @@ router.post("/contactform", function(req, res){
 
     //getting the currentUser to get the current users id
     var currentUser = req.user;
-    var duthor = {
+    var author = {
         id: currentUser._id
     }
+
+    var lawyersMessage = req.body.lawyersMessage;
 
     //collecting all the data
     var firstName = req.body.firstName;
     var lastname = req.body.lastName;
-    var lName = req.body.lName;
+    var lawyersName = req.body.lawyersName;
     var rFContact = req.body.rFContact;
-    var message = req.body.message
+    var message = req.body.message;
 
     //storing all the data in the variable
-    var data = {firstName: firstName, lastName: lastname, lName: lName, rFContact: rFContact, message: message, duthor: duthor};
+    var data = {firstName: firstName, lastName: lastname, lawyersName: lawyersName, rFContact: rFContact, message: message, author: author, lawyersMessage: lawyersMessage};
     //storing the contact form data in mongodb's database
     Contact.create(data, function(err, contactForm){
         if(err) {

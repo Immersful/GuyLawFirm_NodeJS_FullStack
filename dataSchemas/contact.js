@@ -1,13 +1,14 @@
 var mongoose = require("mongoose");
 
 var contactData = new mongoose.Schema({
-    lName: String,
+    lawyersName: String,
     firstName: String,
     lastName: String,
     rFContact: String,
     message: String,
+    lawyersMessage: String,
     // making it so I can user the contact data on a specific user
-    duthor: {
+    author: {
         //getting the users id
         id: {
             type: mongoose.Schema.Types.ObjectId,
